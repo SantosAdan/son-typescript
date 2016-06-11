@@ -1,31 +1,32 @@
-// ------------------------ Interface for functions
-interface iPerson {
-    name:string;
-    age:number;
+// ---------------------------- Interface for functions
+interface iTypeFunc {
+    (a:number, b:number):boolean;
 }
 
-function person (value:iPerson):void {
-    console.log(value);
+var add: iTypeFunc;
+add = function (varA:number, varB:number):boolean {
+    return true;
 }
-person({name:"Adan", age:22});
 
-// ------------------------ Interface for function return
-function person2 (name:string, age:number):iPerson {
-    return {name: name, age: age};
-}
-console.log(person2("Recarlos", 22));
-
-// ------------------------ Interface with optional attributes
+// ------------------------------------------
 interface iColor {
-    title?:string;
-    codeColor:string;
+    (codeColor:string, title?:string):{codeColor:string, title?:string};
 }
 
-function getColor(codeColor:string, title?:string):iColor { // Os atributos opcionais devem vir no fim da declaração de parâmetros
+var getColor: iColor;
+getColor = function (codeColor:string, title?:string):{codeColor:string, title?:string} {
     if(title)
-        return {title: title, codeColor: codeColor};
-
-    return {codeColor: codeColor};
+        return {codeColor:codeColor, title:title};
+    return {codeColor:codeColor};
 }
-console.log(getColor("#000"));
-console.log(getColor("Black", "#000"));
+
+console.log(getColor("#fff", "White"));
+
+// ------------------------------------------- Interface for array
+interface iArrayTypes {
+    [index:number]:string;
+}
+
+var a: iArrayTypes;
+a = ["test", 65];
+console.log(a);
