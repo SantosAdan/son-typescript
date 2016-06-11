@@ -1,48 +1,59 @@
-var car:string = "Ferrari";
+// ----------------------------------------- Public Attributes
+class Car {
+    constructor(
+        public name: string,
+        public color: string,
+        public power: number
+    ){};
 
-function getCar(value:string):string {
-    var car = value;
-    return car;
-}
-console.log(getCar("Camaro"));
-console.log(car);
-
-function testScope() {
-    return car;
-}
-console.log(testScope());
-
-// -----------------------------------------
-function testA() {
-    var a = 1;
-    a = 2;
-    var b = testB();
-    a = 3;
-    return b;
-
-    function testB() {
-        return a;
+    printCar():void {
+        console.log(this.name, this.color, this.power);
     }
 }
-console.log(testA());
+var camaro = new Car("Camaro", "Yellow", 450);
+camaro.printCar();
 
-// ----------------------------------- Variables inside scope
-function f(value:boolean) {
-    let a = 100;
-    if(value) {
-        let b = a + 1;
-        return b;
-    }
-    //return b;
+// ----------------------------------------- Private Attributes
+class Car2 {
+    private _name: string;
+    private _color: string;
+    private _power: number;
+
+    constructor(name:string, color:string, power:number){
+        this._name = name;
+        this._color = color;
+        this._power = power;
+    };
 }
-console.log(f(true));
+var ferrari = new Car2("Ferrari", "Red", 480);
+//ferrari._name = "Corsa";
+console.log(ferrari);
 
-function g(condition:boolean, x:number):number {
-    if(condition) {
-        let x = 100;
-        return x;
+// ----------------------------------------- Static Attributes
+class Car3 {
+    private _name: string;
+    private _color: string;
+    private _power: number;
+    public static list:Array<string> = [];
+
+    constructor(name:string, color:string, power:number){
+        this._name = name;
+        this._color = color;
+        this._power = power;
+        Car3.list.push(name);
+    };
+
+    get name():string {
+        return this._name;
     }
 
-    return x;
+    set name(value:string):void {
+        this._name = value;
+    }
 }
-console.log(g(true, 0));
+var porshe = new Car3("Porshe", "Black", 510);
+console.log(porshe);
+porshe.name = "Porshezão";
+var shelby = new Car3("Shelby", "Navy Blue", 460);
+console.log(porshe);
+console.log(Car3.list);

@@ -1,41 +1,56 @@
-var car = "Ferrari";
-function getCar(value) {
-    var car = value;
-    return car;
-}
-console.log(getCar("Camaro"));
-console.log(car);
-function testScope() {
-    return car;
-}
-console.log(testScope());
-// -----------------------------------------
-function testA() {
-    var a = 1;
-    a = 2;
-    var b = testB();
-    a = 3;
-    return b;
-    function testB() {
-        return a;
+// ----------------------------------------- Public Attributes
+var Car = (function () {
+    function Car(name, color, power) {
+        this.name = name;
+        this.color = color;
+        this.power = power;
     }
-}
-console.log(testA());
-// ----------------------------------- Variables inside scope
-function f(value) {
-    var a = 100;
-    if (value) {
-        var b = a + 1;
-        return b;
+    ;
+    Car.prototype.printCar = function () {
+        console.log(this.name, this.color, this.power);
+    };
+    return Car;
+}());
+var camaro = new Car("Camaro", "Yellow", 450);
+camaro.printCar();
+// ----------------------------------------- Private Attributes
+var Car2 = (function () {
+    function Car2(name, color, power) {
+        this._name = name;
+        this._color = color;
+        this._power = power;
     }
-    //return b;
-}
-console.log(f(true));
-function g(condition, x) {
-    if (condition) {
-        var x_1 = 100;
-        return x_1;
+    ;
+    return Car2;
+}());
+var ferrari = new Car2("Ferrari", "Red", 480);
+//ferrari._name = "Corsa";
+console.log(ferrari);
+// ----------------------------------------- Static Attributes
+var Car3 = (function () {
+    function Car3(name, color, power) {
+        this._name = name;
+        this._color = color;
+        this._power = power;
+        Car3.list.push(name);
     }
-    return x;
-}
-console.log(g(true, 0));
+    ;
+    Object.defineProperty(Car3.prototype, "name", {
+        get: function () {
+            return this._name;
+        },
+        set: function (value) {
+            this._name = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Car3.list = [];
+    return Car3;
+}());
+var porshe = new Car3("Porshe", "Black", 510);
+console.log(porshe);
+porshe.name = "Porshezão";
+var shelby = new Car3("Shelby", "Navy Blue", 460);
+console.log(porshe);
+console.log(Car3.list);
