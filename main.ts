@@ -1,40 +1,48 @@
+var car:string = "Ferrari";
 
-var test: boolean = false;
-var id: number = 2;
-
-// ------------------------------------- Numbers
-var decimal: number = 5.5;
-var hex: number = 0xf00d;
-var binary: number = 0b10;
-var octal: number = 0o744;
-
-// ------------------------------------- Strings
-var name: string = "Adan";
-var car: string = 'Camaro';
-var text: string = `<p>Name: ${name}</p>
-                               <p>Car: ${car}</p>`;
-document.body.innerHTML = text;
-
-// ------------------------------------- Array
-var fruits: string[] = ["Apple", "Watermelon", "Lemon"];
-console.log(fruits);
-var fruits: Array<string> = ["Apple", "Watermelon", "Lemon"];
-console.log(fruits);
-
-// ------------------------------------- Enum
-enum Color {Red = 1, Green, Blue};
-console.log(Color.Red);
-console.log(Color[2]);
-
-// ------------------------------------- Any
-var list: any = 23;
-console.log(list);
-
-list = "String...";
-console.log(list);
-
-// ------------------------------------- Void
-function printNumber(num:number):void {
-    alert(num);
+function getCar(value:string):string {
+    var car = value;
+    return car;
 }
-printNumber(32);
+console.log(getCar("Camaro"));
+console.log(car);
+
+function testScope() {
+    return car;
+}
+console.log(testScope());
+
+// -----------------------------------------
+function testA() {
+    var a = 1;
+    a = 2;
+    var b = testB();
+    a = 3;
+    return b;
+
+    function testB() {
+        return a;
+    }
+}
+console.log(testA());
+
+// ----------------------------------- Variables inside scope
+function f(value:boolean) {
+    let a = 100;
+    if(value) {
+        let b = a + 1;
+        return b;
+    }
+    //return b;
+}
+console.log(f(true));
+
+function g(condition:boolean, x:number):number {
+    if(condition) {
+        let x = 100;
+        return x;
+    }
+
+    return x;
+}
+console.log(g(true, 0));

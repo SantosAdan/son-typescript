@@ -1,37 +1,41 @@
-var test = false;
-var id = 2;
-// ------------------------------------- Numbers
-var decimal = 5.5;
-var hex = 0xf00d;
-var binary = 2;
-var octal = 484;
-// ------------------------------------- Strings
-var name = "Adan";
-var car = 'Camaro';
-var text = "<p>Name: " + name + "</p>\n                               <p>Car: " + car + "</p>";
-document.body.innerHTML = text;
-// ------------------------------------- Array
-var fruits = ["Apple", "Watermelon", "Lemon"];
-console.log(fruits);
-var fruits = ["Apple", "Watermelon", "Lemon"];
-console.log(fruits);
-// ------------------------------------- Enum
-var Color;
-(function (Color) {
-    Color[Color["Red"] = 1] = "Red";
-    Color[Color["Green"] = 2] = "Green";
-    Color[Color["Blue"] = 3] = "Blue";
-})(Color || (Color = {}));
-;
-console.log(Color.Red);
-console.log(Color[2]);
-// ------------------------------------- Any
-var list = 23;
-console.log(list);
-list = "String...";
-console.log(list);
-// ------------------------------------- Void
-function printNumber(num) {
-    alert(num);
+var car = "Ferrari";
+function getCar(value) {
+    var car = value;
+    return car;
 }
-printNumber(32);
+console.log(getCar("Camaro"));
+console.log(car);
+function testScope() {
+    return car;
+}
+console.log(testScope());
+// -----------------------------------------
+function testA() {
+    var a = 1;
+    a = 2;
+    var b = testB();
+    a = 3;
+    return b;
+    function testB() {
+        return a;
+    }
+}
+console.log(testA());
+// ----------------------------------- Variables inside scope
+function f(value) {
+    var a = 100;
+    if (value) {
+        var b = a + 1;
+        return b;
+    }
+    //return b;
+}
+console.log(f(true));
+function g(condition, x) {
+    if (condition) {
+        var x_1 = 100;
+        return x_1;
+    }
+    return x;
+}
+console.log(g(true, 0));
