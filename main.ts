@@ -1,59 +1,31 @@
-// ----------------------------------------- Public Attributes
-class Car {
-    constructor(
-        public name: string,
-        public color: string,
-        public power: number
-    ){};
-
-    printCar():void {
-        console.log(this.name, this.color, this.power);
-    }
+// ------------------------ Interface for functions
+interface iPerson {
+    name:string;
+    age:number;
 }
-var camaro = new Car("Camaro", "Yellow", 450);
-camaro.printCar();
 
-// ----------------------------------------- Private Attributes
-class Car2 {
-    private _name: string;
-    private _color: string;
-    private _power: number;
-
-    constructor(name:string, color:string, power:number){
-        this._name = name;
-        this._color = color;
-        this._power = power;
-    };
+function person (value:iPerson):void {
+    console.log(value);
 }
-var ferrari = new Car2("Ferrari", "Red", 480);
-//ferrari._name = "Corsa";
-console.log(ferrari);
+person({name:"Adan", age:22});
 
-// ----------------------------------------- Static Attributes
-class Car3 {
-    private _name: string;
-    private _color: string;
-    private _power: number;
-    public static list:Array<string> = [];
-
-    constructor(name:string, color:string, power:number){
-        this._name = name;
-        this._color = color;
-        this._power = power;
-        Car3.list.push(name);
-    };
-
-    get name():string {
-        return this._name;
-    }
-
-    set name(value:string):void {
-        this._name = value;
-    }
+// ------------------------ Interface for function return
+function person2 (name:string, age:number):iPerson {
+    return {name: name, age: age};
 }
-var porshe = new Car3("Porshe", "Black", 510);
-console.log(porshe);
-porshe.name = "Porshezão";
-var shelby = new Car3("Shelby", "Navy Blue", 460);
-console.log(porshe);
-console.log(Car3.list);
+console.log(person2("Recarlos", 22));
+
+// ------------------------ Interface with optional attributes
+interface iColor {
+    title?:string;
+    codeColor:string;
+}
+
+function getColor(codeColor:string, title?:string):iColor { // Os atributos opcionais devem vir no fim da declaração de parâmetros
+    if(title)
+        return {title: title, codeColor: codeColor};
+
+    return {codeColor: codeColor};
+}
+console.log(getColor("#000"));
+console.log(getColor("Black", "#000"));
