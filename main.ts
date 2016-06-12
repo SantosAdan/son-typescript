@@ -1,16 +1,12 @@
-module App {
-    export interface iCar {
-        name: string;
-    }
-}
+/// <reference path="Color.ts" />
+ module ColorModule {
+     var red = new Color();
+     red.name = "Red";
+     red.code = "#FF0000";
+     console.log(red.getColor());
+ }
 
-module App {
-    class Car implements iCar {
-        name: string;
-        color: string;
-    }
-
-    var mustang = new Car();
-
-    console.log(mustang);
-}
+ var blue = new ColorModule.Color();
+ blue.name = "Blue";
+ blue.code = "0000FF";
+ console.log(blue.getColor());
