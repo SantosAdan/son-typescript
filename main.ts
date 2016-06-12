@@ -1,68 +1,24 @@
-interface iCountString {
-    valueTxt: string;
-    countTxt():number;
+var listCar = ["Camaro", "Ferrari", "Porsche"];
+
+// JS
+for(var i in listCar) {
+    console.log(i);
 }
 
-class Mytext implements iCountString {
-    constructor(public valueTxt:string){};
-
-    countTxt():number {
-        return this.valueTxt.length;
-    };
+// TS
+for(var car of listCar) {
+    console.log(car);
 }
 
-var t = new Mytext("Adan Recarlos...");
-console.log(t.countTxt());
+var colors = new Array(["Red", "Green", "Blue"]);
+colors['title'] = "Colors";
 
-// ---------------------------------- Duas Interfaces
-interface iPrintString {
-    print(value:string):void;
+// JS
+for(var i in colors) {
+    console.log(i);
 }
 
-class Mytext2 implements iCountString, iPrintString {
-    constructor(public valueTxt:string){};
-
-    countTxt():number {
-        return this.valueTxt.length;
-    };
-
-    print(value:string):void {
-        console.log('Text: ' + value);
-    }
+// TS
+for(var color of colors) {
+    console.log(color);
 }
-var t2 = new Mytext2("Adan");
-t2.print('Test');
-
-// ------------------------------ Herança
-interface iCarString {
-    name:string;
-    getCar():string;
-}
-
-interface iCarColor {
-    color:string;
-    getColor():string;
-}
-
-interface iCar extends iCarString, iCarColor{
-    power:number;
-    getPower():number;
-}
-
-class Car implements iCar {
-    constructor(public name: string, public color: string, public power: number){};
-
-    getCar():string {
-        return this.name;
-    }
-
-    getColor():string {
-        return this.color;
-    }
-
-    getPower():number {
-        return this.power;
-    }
-}
-var camaro = new Car("Camaro", "Yellow", 460);
-console.log(camaro.getCar(), camaro.getColor(), camaro.getPower());

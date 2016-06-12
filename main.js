@@ -1,49 +1,21 @@
-var Mytext = (function () {
-    function Mytext(valueTxt) {
-        this.valueTxt = valueTxt;
-    }
-    ;
-    Mytext.prototype.countTxt = function () {
-        return this.valueTxt.length;
-    };
-    ;
-    return Mytext;
-}());
-var t = new Mytext("Adan Recarlos...");
-console.log(t.countTxt());
-var Mytext2 = (function () {
-    function Mytext2(valueTxt) {
-        this.valueTxt = valueTxt;
-    }
-    ;
-    Mytext2.prototype.countTxt = function () {
-        return this.valueTxt.length;
-    };
-    ;
-    Mytext2.prototype.print = function (value) {
-        console.log('Text: ' + value);
-    };
-    return Mytext2;
-}());
-var t2 = new Mytext2("Adan");
-t2.print('Test');
-var Car = (function () {
-    function Car(name, color, power) {
-        this.name = name;
-        this.color = color;
-        this.power = power;
-    }
-    ;
-    Car.prototype.getCar = function () {
-        return this.name;
-    };
-    Car.prototype.getColor = function () {
-        return this.color;
-    };
-    Car.prototype.getPower = function () {
-        return this.power;
-    };
-    return Car;
-}());
-var camaro = new Car("Camaro", "Yellow", 460);
-console.log(camaro.getCar(), camaro.getColor(), camaro.getPower());
+var listCar = ["Camaro", "Ferrari", "Porsche"];
+// JS
+for (var i in listCar) {
+    console.log(i);
+}
+// TS
+for (var _i = 0, listCar_1 = listCar; _i < listCar_1.length; _i++) {
+    var car = listCar_1[_i];
+    console.log(car);
+}
+var colors = new Array(["Red", "Green", "Blue"]);
+colors['title'] = "Colors";
+// JS
+for (var i in colors) {
+    console.log(i);
+}
+// TS
+for (var _a = 0, colors_1 = colors; _a < colors_1.length; _a++) {
+    var color = colors_1[_a];
+    console.log(color);
+}
