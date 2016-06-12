@@ -1,21 +1,17 @@
-var listCar = ["Camaro", "Ferrari", "Porsche"];
-// JS
-for (var i in listCar) {
-    console.log(i);
-}
-// TS
-for (var _i = 0, listCar_1 = listCar; _i < listCar_1.length; _i++) {
-    var car = listCar_1[_i];
-    console.log(car);
-}
-var colors = new Array(["Red", "Green", "Blue"]);
-colors['title'] = "Colors";
-// JS
-for (var i in colors) {
-    console.log(i);
-}
-// TS
-for (var _a = 0, colors_1 = colors; _a < colors_1.length; _a++) {
-    var color = colors_1[_a];
-    console.log(color);
-}
+/// <reference path="iCar" />
+var Car = (function () {
+    function Car(name, color, power) {
+        this.name = name;
+        this.color = color;
+        this.power = power;
+    }
+    ;
+    Car.prototype.getCar = function () {
+        return console.log(this.name, this.color, this.power);
+    };
+    return Car;
+}());
+/// <reference path="Car" />
+var porsche = new Car("Porsche", "Red", 460);
+porsche.getCar();
+// tsc main.ts --out main.js -w 
