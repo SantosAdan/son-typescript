@@ -1,6 +1,16 @@
-/// <reference path="Car" />
+module App {
+    export interface iCar {
+        name: string;
+    }
+}
 
-var porsche = new Car("Porsche", "Black", 460);
-porsche.getCar();
+module App {
+    class Car implements iCar {
+        name: string;
+        color: string;
+    }
 
-// tsc main.ts --out main.js -w
+    var mustang = new Car();
+
+    console.log(mustang);
+}
